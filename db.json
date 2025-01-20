@@ -1,0 +1,121 @@
+{
+    "leaders": [
+        {
+            "id": 1,
+            "place": "first",
+            "name": "",
+            "score": ""
+        },
+        {
+            "id": 2,
+            "place": "second",
+            "name": "",
+            "score": ""
+        },
+        {
+            "id": 3,
+            "place": "third",
+            "name": "",
+            "score": ""
+        },
+        {
+            "id": 4,
+            "place": "fourth",
+            "name": "",
+            "score": ""
+        },
+        {
+            "id": 5,
+            "place": "fifth",
+            "name": "",
+            "score": ""
+        }
+    ],
+    "photos": [
+        {
+            "id": 1,
+            "title": "Dorothea Lange, Migrant mother",
+            "year": "1936",
+            "image": "./photos/migrant-mother.jpg",
+            "source": ""
+        },
+        {
+            "id": 2,
+            "title": "V-J Day in Times Square",
+            "year": "1945",
+            "image": "./photos/times-square-kiss.webp",
+            "source": "https://time.com/4576764/life-magazine-100-photos/"
+        },
+        {
+            "id": 3,
+            "title": "Victorian Couple Trying Not to Laugh",
+            "year": "1890",
+            "image": "./photos/victorian-couple-laugh.webp",
+            "source": "https://earthlymission.com/victorian-couple-cannot-help-laughing-when-having-their-picture-taken/"
+        },
+        {
+            "id": 4,
+            "title": "Harvey Milk at San Francisco Gay Pride",
+            "year": "1978",
+            "image":"./photos/harvey-milk.webp",
+            "description": "This photograph shows Harvey Milk, one of the first openly gay elected officials in the U.S., riding the San Francisco Gay Freedom Day Parade, symbolizing political progress for the LGBTQ+ community.",
+            "source": "https://www.sfgate.com/bayarea/article/Harvey-Milk-would-love-this-column-5693342.php"
+        },
+        {
+            "id": 5,
+            "title": "Lesbian Couple at a San Francisco Pride Parade",
+            "year": "1979",
+            "image": "./photos/gay-freedom-pride.jpg",
+            "description": "An image depicting a lesbian couple embracing during the pride parade, reflecting the visibility and solidarity within the LGBTQ+ community",
+            "source": "https://californiahistoricalsociety.org/blog/lesbian-gay-bisexual-and-transgender-pride-at-50-a-legacy-of-celebratory-protest/"
+        },
+        {
+            "id": 6,
+            "title": "John Lennon and Yoko Ono's Bed-In for Peace",
+            "year": "1969",
+            "image": "./photos/john-lennon-yoko-ono.webp",
+            "description": "This photograph depicts John Lennon and Yoko Ono during their week-long Bed-In for Peace in Amsterdam, protesting against war and promoting peace.",
+            "source": "https://time.com/5557089/lennon-ono-bed-in/"
+        },
+        {
+            "id": 7,
+            "title": "Muhammad Ali vs. Sonny Liston",
+            "year": "1965",
+            "image": "./photos/muhammad-ali.webp",
+            "description": "Photographed by Neil Leifer, this image captures Muhammad Ali standing over Sonny Liston after a first-round knockout, symbolizing Ali's cominance in boxing.",
+            "source": "https://time.com/3880670/muhammad-ali-sonny-liston-and-the-phantom-punch-title-bout-1965/"
+        },
+        {
+            "id": 8,
+            "title": "Martin Luther King Jr.'s 'I Have a Dream' Speech",
+            "year": "1963",
+            "image": "./photos/MLK.webp",
+            "description": "The image captures Dr. King delivering his historic speech during the March on Washington, a pivotal moment in the Civil Rights Movement",
+            "source": "https://wsvn.com/news/us-world/on-this-day-in-1963-martin-luther-king-jr-gave-his-iconic-i-have-a-dream-speech/"
+        },
+        {
+            "id": 9,
+            "title": "Lunch atop a Skyscraper",
+            "year": "1932",
+            "image": "./photos/lunch-atop-skyscraper.avif",
+            "description": "This photograph captures 11 construction workers eating lunch on a steel beam, high above New York City during the construction of the RCA Building.",
+            "source": "https://www.rockefellercenter.com/magazine/arts-culture/lunch-atop-skyscraper-irish-immigrants/"
+        },
+        {
+            "id": 10,
+            "title": "Britney Spears and Justin Timberlake in Denim",
+            "year": "2001",
+            "image": "./photos/britney-justin-denim.webp",
+            "description": "This photograph captures the pop duo, Britney Spears and Justin Timberlake, attending the American Music Awards in matching denim outfits, epitomizing early 2000s fashion.",
+            "source": "https://www.glamour.com/story/filles-a-papa-britney-spears-justin-timberlake-denim-tshirt"
+        },
+        {
+            "id": 11,
+            "title": "Young couple relaxing during Woodstock Music Festival",
+            "year": "1969",
+            "image": "./photos/woodstock-couple.avif",
+            "description": " ",
+            "source": "https://www.esquire.com/entertainment/music/g14487500/woodstock-1969-crowd-photos/"
+        }
+    ]
+}
