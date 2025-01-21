@@ -78,10 +78,12 @@ function endGame() {
         const playerNameInput = document.createElement("input")
         playerNameInput.placeholder = "Enter your name"
         document.body.appendChild(playerNameInput)
+        playerNameInput.style.margin = "5px"
 
         const saveScoreButton = document.createElement("button")
         saveScoreButton.textContent = "Save Score"
         document.body.appendChild(saveScoreButton)
+        saveScoreButton.style.margin = "5px"
 
         saveScoreButton.addEventListener("click", () => {
             const playerName = playerNameInput.value
@@ -95,6 +97,7 @@ function endGame() {
         const acceptDefeatButton = document.createElement("button")
         acceptDefeatButton.textContent = "See Details"
         document.body.appendChild(acceptDefeatButton)
+        acceptDefeatButton.style.margin = "5px"
         acceptDefeatButton.addEventListener('click', () => {
             gameOver.remove()
             acceptDefeatButton.remove()
