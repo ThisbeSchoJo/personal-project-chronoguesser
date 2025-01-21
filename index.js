@@ -1,17 +1,11 @@
-// let randomPhoto = {}
-let totalScore = 0
-let currentRound = 0
+//Initial variables
+let totalScore = 0 
+let currentRound = 0 
 const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
 const displayPhoto = document.getElementById('image') //Grabs the display photo element
-//WILL PROBABLY UPDATE randomPhotosArray TO AN OBJECT FOR BETTER ORGANIZATION - THEN WILL NOT THE BELOW "LET"S AND CAN STORE ALL DETAILS IN ONE PLACE
 const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
 
-// let photoYear = ""
-// let photoTitle = ""
-// let photoDescription = ""
-// let photoSource = ""
-
-//Starts on black page with simple BEGIN button for drama
+//Starts on black page with simple BEGIN button
 //COULD PROBABLY PUT SOME OF THE NEXT LINES IN THE HTML CODE FOR SIMPLICITY (and instead just getELementById and add eventListener)
 const startButton = document.createElement('button')
 startButton.textContent = "BEGIN"
@@ -45,15 +39,6 @@ function fetchRandomPhoto() {
             title: randomPhoto.title,
             description: randomPhoto.description
         })
-           
-        //Append photo to the DOM and track it in randomPhotosArray
-        // document.body.appendChild(displayPhoto) //Append the image to the body
-        // randomPhotosArray.push({
-        //     image: randomPhoto.image,
-        //     year: randomPhoto.year,
-        //     title:randomPhoto.title,
-        //     description: randomPhoto.description
-        // }) 
     })
     .catch(() => alert("Error fetching photos"))
 }
