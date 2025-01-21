@@ -1,7 +1,7 @@
 //Initial variables
 let totalScore = 0 
 let currentRound = 0 
-const maxNumOfRounds = 10 //declaring this as variable so the number of rounds is easy to adjust
+const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
 const displayPhoto = document.getElementById('image') //Grabs the display photo element
 const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
 
