@@ -1,15 +1,15 @@
-let randomPhoto = {}
+// let randomPhoto = {}
 let totalScore = 0
 let currentRound = 0
-const maxNumOfRounds = 5 //declaring this as variable so the number of rounds is easy to adjust
+const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
 const displayPhoto = document.getElementById('image') //Grabs the display photo element
 //WILL PROBABLY UPDATE randomPhotosArray TO AN OBJECT FOR BETTER ORGANIZATION - THEN WILL NOT THE BELOW "LET"S AND CAN STORE ALL DETAILS IN ONE PLACE
 const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
 
-let photoYear = ""
-let photoTitle = ""
-let photoDescription = ""
-let photoSource = ""
+// let photoYear = ""
+// let photoTitle = ""
+// let photoDescription = ""
+// let photoSource = ""
 
 //Starts on black page with simple BEGIN button for drama
 //COULD PROBABLY PUT SOME OF THE NEXT LINES IN THE HTML CODE FOR SIMPLICITY (and instead just getELementById and add eventListener)
@@ -29,26 +29,33 @@ function fetchRandomPhoto() {
     .then(response => response.json()) //Parse the JSON file
     .then(data => {
         //Filter photos to exclude already used ones
-        const availablePhotos = data.filter(photo => !randomPhotosArray.includes(photo.image))
+        const availablePhotos = data.filter(photo => 
+            !randomPhotosArray.some(item => item.image === photo.image)
+        )
         
         //Select a random photo from the remaining available ones
-        const randomInteger = Math.floor(Math.random() * availablePhotos.length)
-        randomPhoto = availablePhotos[randomInteger]
+        const randomInteger = Math.floor(Math.random() * availablePhotos.length) //Separated from next line of code for readability
+        const randomPhoto = availablePhotos[randomInteger]
             
         //Update the displayed photo
         displayPhoto.src = randomPhoto.image
-        photoYear = randomPhoto.year
-        photoTitle = randomPhoto.title
-        photoDescription = randomPhoto.description
-        photoSource = randomPhoto.source
+        randomPhotosArray.push({
+            image: randomPhoto.image,
+            year: randomPhoto.year,
+            title: randomPhoto.title,
+            description: randomPhoto.description
+        })
            
         //Append photo to the DOM and track it in randomPhotosArray
-        document.body.appendChild(displayPhoto) //Append the image to the body
-        randomPhotosArray.push(randomPhoto.image) 
+        // document.body.appendChild(displayPhoto) //Append the image to the body
+        // randomPhotosArray.push({
+        //     image: randomPhoto.image,
+        //     year: randomPhoto.year,
+        //     title:randomPhoto.title,
+        //     description: randomPhoto.description
+        // }) 
     })
-    .catch( () => {
-        alert("Errorfetching photos")
-    })
+    .catch(() => alert("Error fetching photos"))
 }
 
 
@@ -58,9 +65,9 @@ guessForm.addEventListener('submit', (event) => { //listen for submit on the for
     event.preventDefault() //prevent the form from submitting
     const guessYear = Number(document.querySelector("#guess-year").value) //access input value directly
     calculateScore(guessYear) //pass the value to the function
-    console.log(totalScore)
     //Either move onto next round or end the game
     currentRound ++
+
     if (currentRound < maxNumOfRounds) {
         fetchRandomPhoto()
     } else {
@@ -70,6 +77,12 @@ guessForm.addEventListener('submit', (event) => { //listen for submit on the for
     guessForm.reset() //clear the input field
 })
 
+//function will calculate user's score
+function calculateScore(guessYear) {
+    const roundPhoto = randomPhotosArray[currentRound] 
+    const roundScore = Math.abs(Number(roundPhoto.year) - guessYear ) //score for each round = |accurate year - guess year|
+    totalScore += roundScore
+}
 
 function endGame() {
     document.body.innerHTML = ""
@@ -77,9 +90,9 @@ function endGame() {
         gameOver.textContent = `Game Over! Final Score: ${totalScore}`
         document.body.appendChild(gameOver)//display "game over" on the blacked out screen
         // calculateScore(guessYear)
-        console.log(totalScore)
+        // console.log(totalScore)
         const acceptDefeatButton = document.createElement("button")
-        acceptDefeatButton.textContent = "See the truth"
+        acceptDefeatButton.textContent = "See details"
         document.body.appendChild(acceptDefeatButton)
         acceptDefeatButton.addEventListener('click', () => {
             gameOver.remove()
@@ -89,34 +102,42 @@ function endGame() {
 }
 
 
-//function will calculate user's score
-function calculateScore(guessYear) {
-    const photoYearNumber = Number(randomPhoto.year) //convert to a number for the calculations
-    const roundScore = Math.abs( randomPhoto.year - guessYear ) //score for each round = |accurate year - guess year|
-    totalScore += roundScore
-}
-
 function revealPhoto() {
-    randomPhotosArray.forEach((photoSrc) => {
+    randomPhotosArray.forEach((photo) => {
         const usedPhoto = document.createElement('img')
-        usedPhoto.src = photoSrc
+        usedPhoto.src = photo.image
         usedPhoto.classList.add('used-photo') //this will make all the used photos have the classname "used-photo", so I can style it in CSS
         document.body.appendChild(usedPhoto)
-        usedPhoto.addEventListener('mouseover', revealDetails)
+        usedPhoto.addEventListener('mouseover', () => revealDetails(photo, usedPhoto))
     })
 }
 
+
 //Reveals photo information 
-function revealDetails() {
-    const yearReveal = document.createElement("p")
-    yearReveal.textContent = photoYear
-    const titleReveal = document.createElement("p")
-    titleReveal.textContent = photoTitle
+function revealDetails(photo, photoElement) { //photo argument is the photo object, photoElement is the image element that triggered the mouseover event
+    //Create a container for the photo details
+    const photoDetailsContainer = document.createElement("div")
+
+    //Add details to the container
+    // const yearReveal = document.createElement("p")
+    // yearReveal.textContent = `Year: ${photoYear}`
+    const titleAndYearReveal = document.createElement("p")
+    titleAndYearReveal.textContent = `${photo.title} (${photo.year})`
     const descriptionReveal = document.createElement("p")
-    descriptionReveal.textContent = photoDescription
-    document.body.appendChild(yearReveal)
-    document.body.appendChild(titleReveal)
-    document.body.appendChild(descriptionReveal)
+    descriptionReveal.textContent = photo.description
+
+    //Append details to the container
+    // photoDetailsContainer.appendChild(yearReveal)
+    photoDetailsContainer.appendChild(titleAndYearReveal)
+    photoDetailsContainer.appendChild(descriptionReveal)
+
+    //Replace the photo with the details
+    photoElement.replaceWith(photoDetailsContainer)
+
+    //Revert photo back when user hovers out
+    photoDetailsContainer.addEventListener("mouseout", () => {
+        photoDetailsContainer.replaceWith(photoElement)
+    })
 }
 
 
