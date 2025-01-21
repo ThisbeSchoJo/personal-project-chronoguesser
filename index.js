@@ -1,7 +1,7 @@
 //Initial variables
 let totalScore = 0 
 let currentRound = 0 
-const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
+const maxNumOfRounds = 10 //declaring this as variable so the number of rounds is easy to adjust
 const displayPhoto = document.getElementById('image') //Grabs the display photo element
 const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
 
@@ -74,8 +74,24 @@ function endGame() {
         const gameOver = document.createElement("h4")
         gameOver.textContent = `Game Over! Final Score: ${totalScore}`
         document.body.appendChild(gameOver)//display "game over" on the blacked out screen
-        // calculateScore(guessYear)
-        // console.log(totalScore)
+
+        const playerNameInput = document.createElement("input")
+        playerNameInput.placeholder = "Enter your name"
+        document.body.appendChild(playerNameInput)
+
+        const saveScoreButton = document.createElement("button")
+        saveScoreButton.textContent = "Save Score"
+        document.body.appendChild(saveScoreButton)
+
+        saveScoreButton.addEventListener("click", () => {
+            const playerName = playerNameInput.value.trim()
+            if (playerName) {
+                saveScore(playerName, totalScore) //save score to db.json
+            } else {
+                alert("Please enter your name.")
+            }
+        })
+
         const acceptDefeatButton = document.createElement("button")
         acceptDefeatButton.textContent = "See details"
         document.body.appendChild(acceptDefeatButton)
@@ -125,24 +141,48 @@ function revealDetails(photo, photoElement) { //photo argument is the photo obje
     })
 }
 
-//ASSESSMENT CODE
-const foods = ["pizza", "cheese"]
-foods.push("sauce")
 
-foods.forEach((food) => {
-    console.log(`I love ${food}`)
-})
+function saveScore(playerName, score) {
+    //Create an object to store the player's name and score
+    const newLeader = { name: playerName, score: score}
 
-const form = document.getElementById("guess-form")
-form.addEventListener('submit', (event) => {
-    event.preventDefault()
-    console.log("Hello flatiron")
-})
+    //Send a POST request to update the 'leaders' array in db.json
+    fetch('http://localhost:3000/leaders', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newLeader)
+    })
+    .then(response => response.json())
+    .then(() => {
+        showLeaderboard() //Display the leaderboard after saving the score
+    })
+    .catch(() => {
+        alert("Error saving score")
+    })
+}
 
+function showLeaderboard() {
+    fetch('http://localhost:3000/leaders') //Fetch the leaders data from db.json
+        .then(response => response.json())
+        .then(data => {
+            const leaderboard = data.sort((a,b) => a.score - b.score) //Sorts by score in ascending order
+            const leaderboardContainer = document.createElement("div")
+            leaderboardContainer.innerHTML = "<h3>Leaderboard</h3>"
 
+            leaderboard.forEach((entry, index) => {
+                const scoreEntry = document.createElement("p")
+                scoreEntry.textContent = `${index + 1}. ${entry.name} - ${entry.score} points` // `${index +1}` displays the index of the player in the leader (plus 1 to make more user-friendly), ${entry.name} displays the name property of the entry (aka the player name), ${entry.score} will display the score property of the entry/user
+                leaderboardContainer.appendChild(scoreEntry)
+            })
 
-
-
+            document.body.appendChild(leaderboardContainer)
+        })
+        .catch(() => {
+            alert("Error fetching leaderboard")
+        })
+}
 
 
 

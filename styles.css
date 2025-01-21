@@ -38,3 +38,11 @@ body {
     margin: 10px;
     
 }
+
+
+
+img {
+    max-height: 800px;  /* Set a max height for images */
+    width: auto;  /* Maintain aspect ratio */
+    object-fit: contain;  /* Ensure the entire image fits inside the container */
+  }
