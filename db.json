@@ -37,7 +37,7 @@
             "title": "Dorothea Lange, Migrant mother",
             "year": "1936",
             "image": "./photos/migrant-mother.jpg",
-            "source": ""
+            "source": "https://cphmag.com/migrant-mother/"
         },
         {
             "id": 2,
@@ -103,19 +103,43 @@
         },
         {
             "id": 10,
-            "title": "Britney Spears and Justin Timberlake in Denim",
-            "year": "2001",
-            "image": "./photos/britney-justin-denim.webp",
-            "description": "This photograph captures the pop duo, Britney Spears and Justin Timberlake, attending the American Music Awards in matching denim outfits, epitomizing early 2000s fashion.",
-            "source": "https://www.glamour.com/story/filles-a-papa-britney-spears-justin-timberlake-denim-tshirt"
-        },
-        {
-            "id": 11,
             "title": "Young couple relaxing during Woodstock Music Festival",
             "year": "1969",
             "image": "./photos/woodstock-couple.avif",
-            "description": " ",
+            "description": "This photograph captures a young couple lounging in the grass at Woodstock Music Festival",
             "source": "https://www.esquire.com/entertainment/music/g14487500/woodstock-1969-crowd-photos/"
+        },
+        {
+            "id": 11,
+            "title": "Mexicans arrested while trying to cross the border to the United States",
+            "year": "1979",
+            "image": "./photos/mexican-border-flowers.jpg",
+            "description": "This photograph captures two Mexican men being arrested during their attempt to cross the Mexican border in a field of flowers.",
+            "source": "https://www.magnumphotos.com/newsroom/politics/borderlands/"
+        },
+        {
+            "id": 12,
+            "title": "Eyes right",
+            "year": "1956",
+            "image": "./photos/eyes-right.webp",
+            "description": "Eyes right is executed with near-military precision by men aboard a New York-bound 20th Century Limited train as movie star Kim Novak eases into her seat in the dining car. ",
+            "source": "https://time.com/3503080/the-best-of-life-37-years-in-pictures/"
+        },
+        {
+            "id": 13,
+            "title": "Four lads from Liverpool",
+            "year": "1964",
+            "image": "./photos/four-lads.webp",
+            "description": "Paul McCartney, George Harrison, John Lennon, and Ringo Starr — take a dip in an unheated Miami Beach swimming pool during a cold snap on their first trip to the States.",
+            "source": "https://time.com/3503080/the-best-of-life-37-years-in-pictures/"
+        },
+        {
+            "id": 14,
+            "title": "Mickey Mantle flings helmet",
+            "year": "1965",
+            "image": "./photos/mickey-mantle.webp",
+            "description": "In one of the most eloquent photographs ever made of a great athlete in decline, Yankee star Mickey Mantle flings his batting helmet away in disgust after another terrible at-bat near the end of his storied, injury-plagued career.",
+            "source": "https://time.com/3503080/the-best-of-life-37-years-in-pictures/"
         }
     ]
 }

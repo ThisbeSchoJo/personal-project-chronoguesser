@@ -125,6 +125,29 @@ function revealDetails(photo, photoElement) { //photo argument is the photo obje
     })
 }
 
+//ASSESSMENT CODE
+const foods = ["pizza", "cheese"]
+foods.push("sauce")
+
+foods.forEach((food) => {
+    console.log(`I love ${food}`)
+})
+
+const form = document.getElementById("guess-form")
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    console.log("Hello flatiron")
+})
+
+
+
+
+
+
+
+
+
+
 
 //When game finishes, user is prompted to input name
 
