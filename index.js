@@ -84,7 +84,7 @@ function endGame() {
         document.body.appendChild(saveScoreButton)
 
         saveScoreButton.addEventListener("click", () => {
-            const playerName = playerNameInput.value.trim()
+            const playerName = playerNameInput.value
             if (playerName) {
                 saveScore(playerName, totalScore) //save score to db.json
             } else {
