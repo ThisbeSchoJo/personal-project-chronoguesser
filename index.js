@@ -93,7 +93,7 @@ function endGame() {
         })
 
         const acceptDefeatButton = document.createElement("button")
-        acceptDefeatButton.textContent = "See details"
+        acceptDefeatButton.textContent = "See Details"
         document.body.appendChild(acceptDefeatButton)
         acceptDefeatButton.addEventListener('click', () => {
             gameOver.remove()
@@ -185,29 +185,3 @@ function showLeaderboard() {
 }
 
 
-
-
-
-
-//When game finishes, user is prompted to input name
-
-
-//Log to leaderboard: will take User's name and score and place on chart 
-
-
-
-
-//FUNCTIONALITY TO DOS:
-//make sure photos don't repeat
-//make an array of the random photos
-//push each new random photo to array
-//if next random photo is already in array, generate new random photo
-
-
-//Have a start button (small white button on all black page) -- maybe it *shakes/trembles* when clicked
-//Maybe have that text disappear like mist
-//and then next text is instructions
-//when instructions timeout or are clicked, they shake/tremble and game begins (text disappears)
-
-//FORMATTING TO DOS:
-//Make photo fit to whole webpage
