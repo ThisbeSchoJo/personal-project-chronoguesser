@@ -6,7 +6,6 @@ const displayPhoto = document.getElementById('image') //Grabs the display photo 
 const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
 
 //Starts on black page with simple BEGIN button
-//COULD PROBABLY PUT SOME OF THE NEXT LINES IN THE HTML CODE FOR SIMPLICITY (and instead just getELementById and add eventListener)
 const startButton = document.createElement('button')
 startButton.textContent = "BEGIN"
 document.body.appendChild(startButton)
@@ -69,6 +68,7 @@ function calculateScore(guessYear) {
     totalScore += roundScore
 }
 
+//function will end the game. Displays "game over" message and shows player their score. Player can then input their name to be added to leaderboard and can click to see the details of the photos from their rounds
 function endGame() {
     document.body.innerHTML = ""
         const gameOver = document.createElement("h4")
@@ -101,11 +101,11 @@ function endGame() {
         acceptDefeatButton.addEventListener('click', () => {
             gameOver.remove()
             acceptDefeatButton.remove()
-            revealPhoto() //USE FOR EACH TO MAKE IT DISPLAY EACH OF THE RANDOM PHOTOS (SAVED IN AN ARRAY EACH GAME) AND THEIR DETAILS
+            revealPhoto() 
         })
 }
 
-
+//Function displays the photos used in each of the rounds
 function revealPhoto() {
     randomPhotosArray.forEach((photo) => {
         const usedPhoto = document.createElement('img')
@@ -117,7 +117,7 @@ function revealPhoto() {
 }
 
 
-//Reveals photo information 
+//
 function revealDetails(photo, photoElement) { //photo argument is the photo object, photoElement is the image element that triggered the mouseover event
     //Create a container for the photo details
     const photoDetailsContainer = document.createElement("div")
