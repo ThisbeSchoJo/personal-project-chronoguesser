@@ -2,37 +2,37 @@
 let totalScore = 0 
 let currentRound = 0 
 const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
-const displayPhoto = document.getElementById('image') //Grabs the display photo element
-const randomPhotosArray = [] //Empty array to store the src of each previously shown photo (to prevent repeats and also to display the used photos at the end)
+const displayPhoto = document.getElementById('image') 
+const randomPhotosArray = [] //Empty array to store the details of each previously shown photo (to prevent repeats and also to display the used photos and their details at the end)
 
-//Starts on black page with simple BEGIN button
+//Starts on black page with BEGIN button
 const startButton = document.createElement('button')
 startButton.textContent = "BEGIN"
 document.body.appendChild(startButton)
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame)//will remove the "BEGIN" button when it is clicked
 
+//Function removes "BEGIN" button, reveals the guess input form, and calls fetchRandomPhoto() to begin game
 function startGame() {
-    startButton.remove() //removes the start button after click/starting
-    //Start the game
+    startButton.remove()
     document.getElementById("guess-form").style.display = "block" //reveals the submit form
     fetchRandomPhoto() //calls function to start generating random photos    
 }
 
 //Function that fetches a random photo from the photos object in db.json
 function fetchRandomPhoto() {
-    fetch('http://localhost:3000/photos') //fetches photos object in db.json
-    .then(response => response.json()) //Parse the JSON file
+    fetch('http://localhost:3000/photos') 
+    .then(response => response.json())
     .then(data => {
         //Filter photos to exclude already used ones
-        const availablePhotos = data.filter(photo => 
-            !randomPhotosArray.some(item => item.image === photo.image)
-        )
+        const availablePhotos = data.filter(photo => //filter method is applied to the data array (which contains all the photos fetched) and creates a new array "availablePhotos" - will only include the items from the data array that meet the conditions
+            !randomPhotosArray.some(item => item.image === photo.image) // item.image === photo.image looks for any photo in randomPhotosArray with the same image property as the current photo from the data array (.some method will return true if such a photo exists, but "!" negates this so will return false if the photo is in randomPhotosArray)
+        ) //result is a new array (availablePhotos) that will only include photos not in the randomPhotosArray (photos already used)
         
-        //Select a random photo from the remaining available ones
+        //Select a random photo from the availablePhotos array
         const randomInteger = Math.floor(Math.random() * availablePhotos.length) //Separated from next line of code for readability
         const randomPhoto = availablePhotos[randomInteger]
             
-        //Update the displayed photo
+        //Update the displayed photo and add the displayed photo to the randomPhotosArray (so it won't be used again)
         displayPhoto.src = randomPhoto.image
         randomPhotosArray.push({
             image: randomPhoto.image,
@@ -46,51 +46,51 @@ function fetchRandomPhoto() {
 
 
 //Handle guess submission
-const guessForm = document.querySelector("#guess-form") //select the form
-guessForm.addEventListener('submit', (event) => { //listen for submit on the form
-    event.preventDefault() //prevent the form from submitting
+const guessForm = document.querySelector("#guess-form") 
+guessForm.addEventListener('submit', (event) => { 
+    event.preventDefault() 
     const guessYear = Number(document.querySelector("#guess-year").value) //access input value directly
     calculateScore(guessYear) //pass the value to the function to calculate user's score
     //Either move onto next round or end the game
     currentRound ++ //goes to next round
 
-    if (currentRound < maxNumOfRounds) {
+    if (currentRound < maxNumOfRounds) { //if there are rounds left, fetch a new photo
         fetchRandomPhoto()
-    } else {
+    } else { //if you've hit the max number of rounds, end the game
         endGame()
     }
-    //
-    guessForm.reset() //clear the input field
+    //clear the input field
+    guessForm.reset() 
 })
 
-//Function will calculate user's score
+//Function will calculate player's score
 function calculateScore(guessYear) {
     const roundPhoto = randomPhotosArray[currentRound] 
     const roundScore = Math.abs(Number(roundPhoto.year) - guessYear ) //score for each round = |accurate year - guess year|
     totalScore += roundScore
 }
 
-//Function will display "game over" message, user's score, calls acceptPlayerInput(), and displays "See Details" button
+//Function will display "game over" message, player's score, calls acceptPlayerInput(), and displays "See Details" button
 function endGame() {
-    document.body.innerHTML = ""
+    document.body.innerHTML = "" //clears all of the webpage's content
     const gameOver = document.createElement("h4")
     gameOver.textContent = `Game Over! Final Score: ${totalScore}`
     document.body.appendChild(gameOver)
 
     acceptPlayerInput()
 
-    const acceptDefeatButton = document.createElement("button")
-    acceptDefeatButton.textContent = "See Details"
-    document.body.appendChild(acceptDefeatButton)
-    acceptDefeatButton.style.margin = "5px"
-    acceptDefeatButton.addEventListener('click', () => {
+    const seeDetailsButton = document.createElement("button")
+    seeDetailsButton.textContent = "See Details"
+    document.body.appendChild(seeDetailsButton)
+    seeDetailsButton.style.margin = "5px"
+    seeDetailsButton.addEventListener('click', () => {
         gameOver.remove()
-        acceptDefeatButton.remove()
+        seeDetailsButton.remove()
         revealPhoto() 
     })
 }
 
-//Function accepts user's name and calls saveScore() on player's name and totalScore
+//Function accepts player's name and calls saveScore() on player's name and totalScore
 function acceptPlayerInput() {
     const playerNameInput = document.createElement("input")
     playerNameInput.placeholder = "Enter your name"
