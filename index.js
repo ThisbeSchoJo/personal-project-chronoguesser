@@ -9,12 +9,14 @@ const randomPhotosArray = [] //Empty array to store the src of each previously s
 const startButton = document.createElement('button')
 startButton.textContent = "BEGIN"
 document.body.appendChild(startButton)
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', startGame)
+
+function startGame() {
     startButton.remove() //removes the start button after click/starting
     //Start the game
     document.getElementById("guess-form").style.display = "block" //reveals the submit form
-    fetchRandomPhoto() //calls function to start generating random photos
-})
+    fetchRandomPhoto() //calls function to start generating random photos    
+}
 
 //Function that fetches a random photo from the photos object in db.json
 function fetchRandomPhoto() {
@@ -48,9 +50,9 @@ const guessForm = document.querySelector("#guess-form") //select the form
 guessForm.addEventListener('submit', (event) => { //listen for submit on the form
     event.preventDefault() //prevent the form from submitting
     const guessYear = Number(document.querySelector("#guess-year").value) //access input value directly
-    calculateScore(guessYear) //pass the value to the function
+    calculateScore(guessYear) //pass the value to the function to calculate user's score
     //Either move onto next round or end the game
-    currentRound ++
+    currentRound ++ //goes to next round
 
     if (currentRound < maxNumOfRounds) {
         fetchRandomPhoto()
@@ -61,48 +63,53 @@ guessForm.addEventListener('submit', (event) => { //listen for submit on the for
     guessForm.reset() //clear the input field
 })
 
-//function will calculate user's score
+//Function will calculate user's score
 function calculateScore(guessYear) {
     const roundPhoto = randomPhotosArray[currentRound] 
     const roundScore = Math.abs(Number(roundPhoto.year) - guessYear ) //score for each round = |accurate year - guess year|
     totalScore += roundScore
 }
 
-//function will end the game. Displays "game over" message and shows player their score. Player can then input their name to be added to leaderboard and can click to see the details of the photos from their rounds
+//Function will display "game over" message, user's score, calls acceptPlayerInput(), and displays "See Details" button
 function endGame() {
     document.body.innerHTML = ""
-        const gameOver = document.createElement("h4")
-        gameOver.textContent = `Game Over! Final Score: ${totalScore}`
-        document.body.appendChild(gameOver)//display "game over" on the blacked out screen
+    const gameOver = document.createElement("h4")
+    gameOver.textContent = `Game Over! Final Score: ${totalScore}`
+    document.body.appendChild(gameOver)
 
-        const playerNameInput = document.createElement("input")
-        playerNameInput.placeholder = "Enter your name"
-        document.body.appendChild(playerNameInput)
-        playerNameInput.style.margin = "5px"
+    acceptPlayerInput()
 
-        const saveScoreButton = document.createElement("button")
-        saveScoreButton.textContent = "Save Score"
-        document.body.appendChild(saveScoreButton)
-        saveScoreButton.style.margin = "5px"
+    const acceptDefeatButton = document.createElement("button")
+    acceptDefeatButton.textContent = "See Details"
+    document.body.appendChild(acceptDefeatButton)
+    acceptDefeatButton.style.margin = "5px"
+    acceptDefeatButton.addEventListener('click', () => {
+        gameOver.remove()
+        acceptDefeatButton.remove()
+        revealPhoto() 
+    })
+}
 
-        saveScoreButton.addEventListener("click", () => {
-            const playerName = playerNameInput.value
-            if (playerName) {
-                saveScore(playerName, totalScore) //save score to db.json
-            } else {
-                alert("Please enter your name.")
-            }
-        })
+//Function accepts user's name and calls saveScore() on player's name and totalScore
+function acceptPlayerInput() {
+    const playerNameInput = document.createElement("input")
+    playerNameInput.placeholder = "Enter your name"
+    document.body.appendChild(playerNameInput)
+    playerNameInput.style.margin = "5px"
 
-        const acceptDefeatButton = document.createElement("button")
-        acceptDefeatButton.textContent = "See Details"
-        document.body.appendChild(acceptDefeatButton)
-        acceptDefeatButton.style.margin = "5px"
-        acceptDefeatButton.addEventListener('click', () => {
-            gameOver.remove()
-            acceptDefeatButton.remove()
-            revealPhoto() 
-        })
+    const saveScoreButton = document.createElement("button")
+    saveScoreButton.textContent = "Save Score"
+    document.body.appendChild(saveScoreButton)
+    saveScoreButton.style.margin = "5px"
+
+    saveScoreButton.addEventListener("click", () => {
+        const playerName = playerNameInput.value
+        if (playerName) {
+            saveScore(playerName, totalScore) //save score to db.json
+        } else {
+            alert("Please enter your name.")
+        }
+    })
 }
 
 //Function displays the photos used in each of the rounds
@@ -117,21 +124,18 @@ function revealPhoto() {
 }
 
 
-//
+//Function displays details for each of the photos used (with mouseover event listener)
 function revealDetails(photo, photoElement) { //photo argument is the photo object, photoElement is the image element that triggered the mouseover event
     //Create a container for the photo details
     const photoDetailsContainer = document.createElement("div")
 
     //Add details to the container
-    // const yearReveal = document.createElement("p")
-    // yearReveal.textContent = `Year: ${photoYear}`
     const titleAndYearReveal = document.createElement("p")
     titleAndYearReveal.textContent = `${photo.title} (${photo.year})`
     const descriptionReveal = document.createElement("p")
     descriptionReveal.textContent = photo.description
 
     //Append details to the container
-    // photoDetailsContainer.appendChild(yearReveal)
     photoDetailsContainer.appendChild(titleAndYearReveal)
     photoDetailsContainer.appendChild(descriptionReveal)
 
@@ -144,7 +148,7 @@ function revealDetails(photo, photoElement) { //photo argument is the photo obje
     })
 }
 
-
+//Function saves the player's name and score and calls showLeaderboard()
 function saveScore(playerName, score) {
     //Create an object to store the player's name and score
     const newLeader = { name: playerName, score: score}
@@ -166,6 +170,7 @@ function saveScore(playerName, score) {
     })
 }
 
+//Function fetches the leaders object from db.json and adds player's name and score to it (in right location)
 function showLeaderboard() {
     fetch('http://localhost:3000/leaders') //Fetch the leaders data from db.json
         .then(response => response.json())
