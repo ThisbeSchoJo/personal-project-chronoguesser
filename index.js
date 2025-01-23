@@ -1,7 +1,7 @@
 //Initial variables
 let totalScore = 0 
 let currentRound = 0 
-const maxNumOfRounds = 3 //declaring this as variable so the number of rounds is easy to adjust
+const maxNumOfRounds = 10 //declaring this as variable so the number of rounds is easy to adjust
 const displayPhoto = document.getElementById('image') 
 const randomPhotosArray = [] //Empty array to store the details of each previously shown photo (to prevent repeats and also to display the used photos and their details at the end)
 
@@ -21,7 +21,6 @@ function removeInstructions() {
         instructions.remove()
     }
 }
-
 
 //Function removes "BEGIN" button, reveals the guess input form, and calls fetchRandomPhoto() to begin game
 function startGame() {
@@ -56,7 +55,6 @@ function fetchRandomPhoto() {
     .catch(() => alert("Error fetching photos"))
 }
 
-
 //Handle guess submission
 const guessForm = document.querySelector("#guess-form") 
 guessForm.addEventListener('submit', (event) => { 
@@ -84,7 +82,8 @@ function calculateScore(guessYear) {
 
 //Function will display "game over" message, player's score, calls acceptPlayerInput(), and displays "See Details" button
 function endGame() {
-    document.body.innerHTML = "" //clears all of the webpage's content
+    displayPhoto.remove();
+    guessForm.remove();
     const gameOver = document.createElement("h4")
     gameOver.textContent = `Game Over! Final Score: ${totalScore}`
     document.body.appendChild(gameOver)
@@ -100,6 +99,7 @@ function endGame() {
         seeDetailsButton.remove()
         revealPhoto() 
     })
+    document.body.classList.add('final-page');
 }
 
 //Function accepts player's name and calls saveScore() on player's name and totalScore
@@ -119,6 +119,7 @@ function acceptPlayerInput() {
         if (playerName) {
             saveScore(playerName, totalScore) //save score to db.json
             saveScoreButton.remove()
+            playerNameInput.remove()
         } else {
             alert("Please enter your name.")
         }
@@ -135,7 +136,6 @@ function revealPhoto() {
         usedPhoto.addEventListener('mouseover', () => revealDetails(photo, usedPhoto))
     })
 }
-
 
 //Function displays details for each of the photos used (with mouseover event listener)
 function revealDetails(photo, photoElement) { //photo argument is the photo object, photoElement is the image element that triggered the mouseover event
@@ -207,11 +207,6 @@ function showLeaderboard() {
         })
 }
 
-
-
-
-
-
 //Testing instructions typing function
 function typeOutText(element, text, speed = 50) {
     let index = 0;
@@ -231,3 +226,10 @@ function typeOutText(element, text, speed = 50) {
 const instructions = document.getElementById('instructions');
 const instructionText = "Welcome to Chronoguesser... Guess the year each photo was taken. The closer you are, the better your score.";
 typeOutText(instructions, instructionText, 150);
+
+// Wait for the start music button to be clicked
+document.getElementById('start-music').addEventListener('click', function() {
+    const audio = document.getElementById('background-music');
+    audio.play(); // Start playing the background music
+    this.remove(); // Removes the "Start Music" button once clicked
+});

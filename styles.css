@@ -4,13 +4,23 @@ body {
     color: white; /*Set color to white*/
     margin: 0; /*Remove default margins for full blackout*/
     padding: 0; /*Remove default padding for full blackout*/
-    height: 100vh; /*Full viewport height */
+    height: 100vh ;/*Full viewport height */
     display: flex; /*Centers content vertically and horizontally*/
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Courier New', monospace;
 }
+
+/* Class that makes the final page stretch the height */
+.final-page {
+    height: 100%; /* Stretches content on the final page */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content from top */
+    align-items: center;
+}
+
 
 #image {
     text-align: center;
@@ -37,7 +47,6 @@ body {
     width: 200px;
     height: auto;
     margin: 10px;
-    
 }
 
 
@@ -50,11 +59,9 @@ img {
 
 
 #instructions {
-    font-family: 'Courier New', monospace; /* Typing effect works great with monospaced fonts */
+    font-family: 'Courier New', monospace;
     font-size: 18px;
     color: #fff;
-    /* background: rgba(0, 0, 0, 0.7); */
-    /* padding: 10px; */
     border-radius: 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 40%;
@@ -64,35 +71,8 @@ img {
 }
 
 
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(-45deg, #1c2833, #2e4057, #34495e, #212f3c);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    font-family: 'Courier New', monospace;
-    color: #eaeaea; /* Soft off-white for contrast */
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-
-///* Container for leaderboard */
+/* Container for leaderboard */
 .leaderboard-container {
-    background-color: #34495e; /* Dark slate background */
     color: #eaeaea; /* Light text color for contrast */
     padding: 20px;
     width: 300px;
@@ -107,7 +87,6 @@ body {
 .leaderboard-container h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 

@@ -2,21 +2,30 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <script defer src="./index.js"></script>
     </head>
     <body>
+        <audio id="background-music" loop>
+            <source src="./music/here-there-everywhere.mp3" type="audio/mp3">
+        </audio>
+
         <h1 id="title">ChronoGuesser</h1>
-        <p id="instruction">Guess the year of the photo...</p>
+        <p id="instruction"></p>
 
         <div id="display-photo">
             <img id="image"/>
         </div>
         <div id="instructions"></div>
+
         <!-- Guess Form -->
         <form id="guess-form">
             <label for="guess-year">Year: </label>
             <input type="number" id="guess-year" name="year" autocomplete="off" />
             <input id="submitButton" type="submit" value="Submit" />
         </form>
+
+        <!-- Start Music Button -->
+        <button id="start-music">Start Music</button>
+        
+        <script defer src="./index.js"></script>
     </body>
 </html>
