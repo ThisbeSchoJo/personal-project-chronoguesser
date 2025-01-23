@@ -14,6 +14,33 @@ startButton.addEventListener('click', () => {
      startGame()
 })
 
+//Function types out text
+function typeOutText(element, text, speed = 150) {
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+//Calling the typeOutText function for the instructions
+const instructions = document.getElementById('instructions');
+const instructionText = "Welcome to Chronoguesser... Guess the year each photo was taken. The closer you are, the better your score.";
+typeOutText(instructions, instructionText);
+
+// Wait for the start music button to be clicked, then play music on loop
+document.getElementById('start-music').addEventListener('click', function() {
+    const audio = document.getElementById('background-music');
+    audio.play(); // Start playing the background music
+    this.remove(); // Removes the "Start Music" button once clicked
+});
+
 //Function removes the instructions
 function removeInstructions() {
     const instructions = document.getElementById('instructions')
@@ -205,29 +232,4 @@ function showLeaderboard() {
         })
 }
 
-//Testing instructions typing function
-function typeOutText(element, text, speed = 150) {
-    let index = 0;
 
-    function type() {
-        if (index < text.length) {
-            element.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, speed);
-        }
-    }
-
-    type();
-}
-
-//Call the typing instructions
-const instructions = document.getElementById('instructions');
-const instructionText = "Welcome to Chronoguesser... Guess the year each photo was taken. The closer you are, the better your score.";
-typeOutText(instructions, instructionText);
-
-// Wait for the start music button to be clicked, then play music on loop
-document.getElementById('start-music').addEventListener('click', function() {
-    const audio = document.getElementById('background-music');
-    audio.play(); // Start playing the background music
-    this.remove(); // Removes the "Start Music" button once clicked
-});
