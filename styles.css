@@ -12,16 +12,6 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* Class that makes the final page stretch the height */
-.final-page {
-    height: 100%; /* Stretches content on the final page */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Align content from top */
-    align-items: center;
-}
-
-
 #image {
     text-align: center;
     display: block;
@@ -49,14 +39,11 @@ body {
     margin: 10px;
 }
 
-
-
 img {
     max-height: 800px;  /*Sets a max height for images */
     width: auto;  /*Maintains aspect ratio */
     object-fit: contain;  /*Ensures the entire image fits inside the container */
   }
-
 
 #instructions {
     font-family: 'Courier New', monospace;
@@ -69,7 +56,6 @@ img {
     text-align: center;
     white-space: normal;
 }
-
 
 /*Container for leaderboard */
 .leaderboard-container {
@@ -103,4 +89,13 @@ img {
     background-color: #2e4057; /* Darker background on hover */
     color: #12f321; /* Change text color on hover */
     cursor: pointer;
+}
+
+/* Class that makes the final page stretch the height */
+.final-page {
+    height: 100%; /* Stretches content on the final page */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content from top */
+    align-items: center;
 }
