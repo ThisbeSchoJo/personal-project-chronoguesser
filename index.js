@@ -9,7 +9,19 @@ const randomPhotosArray = [] //Empty array to store the details of each previous
 const startButton = document.createElement('button')
 startButton.textContent = "BEGIN"
 document.body.appendChild(startButton)
-startButton.addEventListener('click', startGame)//will remove the "BEGIN" button when it is clicked
+startButton.addEventListener('click', () => {
+    removeInstructions()
+     startGame()
+})//will remove the "BEGIN" button when it is clicked
+
+//Function removes the instructions
+function removeInstructions() {
+    const instructions = document.getElementById('instructions')
+    if (instructions) {
+        instructions.remove()
+    }
+}
+
 
 //Function removes "BEGIN" button, reveals the guess input form, and calls fetchRandomPhoto() to begin game
 function startGame() {
@@ -106,6 +118,7 @@ function acceptPlayerInput() {
         const playerName = playerNameInput.value
         if (playerName) {
             saveScore(playerName, totalScore) //save score to db.json
+            saveScoreButton.remove()
         } else {
             alert("Please enter your name.")
         }
@@ -177,11 +190,13 @@ function showLeaderboard() {
         .then(data => {
             const leaderboard = data.sort((a,b) => a.score - b.score) //Sorts by score in ascending order
             const leaderboardContainer = document.createElement("div")
+            leaderboardContainer.classList.add("leaderboard-container")
             leaderboardContainer.innerHTML = "<h3>Leaderboard</h3>"
 
             leaderboard.forEach((entry, index) => {
                 const scoreEntry = document.createElement("p")
                 scoreEntry.textContent = `${index + 1}. ${entry.name} - ${entry.score} points` // `${index +1}` displays the index of the player in the leader (plus 1 to make more user-friendly), ${entry.name} displays the name property of the entry (aka the player name), ${entry.score} will display the score property of the entry/user
+                scoreEntry.classList.add("leaderboard-entry")
                 leaderboardContainer.appendChild(scoreEntry)
             })
 
@@ -193,3 +208,26 @@ function showLeaderboard() {
 }
 
 
+
+
+
+
+//Testing instructions typing function
+function typeOutText(element, text, speed = 50) {
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+//Call the typing instructions
+const instructions = document.getElementById('instructions');
+const instructionText = "Welcome to Chronoguesser... Guess the year each photo was taken. The closer you are, the better your score.";
+typeOutText(instructions, instructionText, 150);
