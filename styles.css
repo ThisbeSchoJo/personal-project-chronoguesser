@@ -94,6 +94,7 @@ img {
 /* Class that makes the final page stretch the height */
 .final-page {
     height: 100%; /* Stretches content on the final page */
+    width: 300px
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Align content from top */

@@ -1,110 +1,32 @@
 {
   "leaders": [
     {
-      "id": "57c2",
-      "name": "asfas",
-      "score": 5845
-    },
-    {
-      "id": "9b77",
-      "name": "jj",
-      "score": 5842
-    },
-    {
-      "id": "9611",
-      "name": "sss",
-      "score": 5791
-    },
-    {
-      "id": "afa6",
-      "name": "sdf",
-      "score": 5804
-    },
-    {
-      "id": "5716",
-      "name": "jj",
-      "score": 5848
-    },
-    {
-      "id": "a9d4",
-      "name": "ll",
-      "score": 5801
-    },
-    {
-      "id": "7516",
-      "name": "afasf",
-      "score": 5842
-    },
-    {
-      "id": "3ae8",
-      "name": "asfa",
-      "score": 5864
-    },
-    {
-      "id": "b61f",
-      "name": "sfa",
-      "score": 19521
-    },
-    {
-      "id": "6e0d",
-      "name": "jbj",
-      "score": 19518
-    },
-    {
-      "id": "c889",
-      "name": "jkhv",
-      "score": 19592
-    },
-    {
-      "id": "eb3a",
-      "name": "nb m",
-      "score": 19499
-    },
-    {
-      "id": "089f",
-      "name": "kbj",
-      "score": 19621
-    },
-    {
-      "id": "93fa",
-      "name": "lkn",
-      "score": 19571
-    },
-    {
       "id": "1a90",
       "name": "eli",
       "score": 2013
     },
     {
-      "id": "5ac9",
-      "name": "xxxxx",
-      "score": 19573
+      "id": "1256",
+      "name": "thisbe",
+      "score": 19533
+    },
+    {
+      "id": "c915",
+      "name": "class",
+      "score": 1948
     }
   ],
   "photos": [
     {
       "id": "1",
-      "title": "Dorothea Lange, Migrant mother",
-      "year": "1936",
-      "image": "./photos/migrant-mother.jpg",
-      "source": "https://cphmag.com/migrant-mother/"
-    },
-    {
-      "id": "2",
       "title": "V-J Day in Times Square",
       "year": "1945",
       "image": "./photos/times-square-kiss.webp",
+      "description": "The V-J Day kiss in Times Square photo, taken by Alfred Eisenstaedt in 1945, captures an exuberant sailor spontaneously kissing a nurse amidst the celebrations of Japan's surrender, marking the end of World War II.",
       "source": "https://time.com/4576764/life-magazine-100-photos/"
     },
     {
-      "id": "3",
-      "title": "Victorian Couple Trying Not to Laugh",
-      "year": "1890",
-      "image": "./photos/victorian-couple-laugh.webp",
-      "source": "https://earthlymission.com/victorian-couple-cannot-help-laughing-when-having-their-picture-taken/"
-    },
-    {
-      "id": "4",
+      "id": "2",
       "title": "Harvey Milk at San Francisco Gay Pride",
       "year": "1978",
       "image": "./photos/harvey-milk.webp",
@@ -112,15 +34,15 @@
       "source": "https://www.sfgate.com/bayarea/article/Harvey-Milk-would-love-this-column-5693342.php"
     },
     {
-      "id": "5",
+      "id": "3",
       "title": "Lesbian Couple at a San Francisco Pride Parade",
       "year": "1979",
       "image": "./photos/gay-freedom-pride.jpg",
-      "description": "An image depicting a lesbian couple embracing during the pride parade, reflecting the visibility and solidarity within the LGBTQ+ community",
+      "description": "This image depicts a lesbian couple embracing during the pride parade in the lates 70s and reflects the visibility and solidarity within the LGBTQ+ community.",
       "source": "https://californiahistoricalsociety.org/blog/lesbian-gay-bisexual-and-transgender-pride-at-50-a-legacy-of-celebratory-protest/"
     },
     {
-      "id": "6",
+      "id": "4",
       "title": "John Lennon and Yoko Ono's Bed-In for Peace",
       "year": "1969",
       "image": "./photos/john-lennon-yoko-ono.webp",
@@ -128,7 +50,7 @@
       "source": "https://time.com/5557089/lennon-ono-bed-in/"
     },
     {
-      "id": "7",
+      "id": "5",
       "title": "Muhammad Ali vs. Sonny Liston",
       "year": "1965",
       "image": "./photos/muhammad-ali.webp",
@@ -136,15 +58,15 @@
       "source": "https://time.com/3880670/muhammad-ali-sonny-liston-and-the-phantom-punch-title-bout-1965/"
     },
     {
-      "id": "8",
+      "id": "6",
       "title": "Martin Luther King Jr.'s 'I Have a Dream' Speech",
       "year": "1963",
       "image": "./photos/MLK.webp",
-      "description": "The image captures Dr. King delivering his historic speech during the March on Washington, a pivotal moment in the Civil Rights Movement",
+      "description": "The iconic photo of Martin Luther King Jr.'s 'I Have a Dream' speech shows him addressing a massive crowd at the 1963 March on Washington, symbolizing the fight for civil rights and racial equality in America.",
       "source": "https://wsvn.com/news/us-world/on-this-day-in-1963-martin-luther-king-jr-gave-his-iconic-i-have-a-dream-speech/"
     },
     {
-      "id": "9",
+      "id": "7",
       "title": "Lunch atop a Skyscraper",
       "year": "1932",
       "image": "./photos/lunch-atop-skyscraper.avif",
@@ -152,23 +74,15 @@
       "source": "https://www.rockefellercenter.com/magazine/arts-culture/lunch-atop-skyscraper-irish-immigrants/"
     },
     {
-      "id": "10",
+      "id": "8",
       "title": "Young couple relaxing during Woodstock Music Festival",
       "year": "1969",
       "image": "./photos/woodstock-couple.avif",
-      "description": "This photograph captures a young couple lounging in the grass at Woodstock Music Festival",
+      "description": "A young couple lies closely together on the grass during the Woodstock Music Festival, embodying the love, peace, and freedom that defined the iconic event.",
       "source": "https://www.esquire.com/entertainment/music/g14487500/woodstock-1969-crowd-photos/"
     },
     {
-      "id": "11",
-      "title": "Mexicans arrested while trying to cross the border to the United States",
-      "year": "1979",
-      "image": "./photos/mexican-border-flowers.jpg",
-      "description": "This photograph captures two Mexican men being arrested during their attempt to cross the Mexican border in a field of flowers.",
-      "source": "https://www.magnumphotos.com/newsroom/politics/borderlands/"
-    },
-    {
-      "id": "12",
+      "id": "9",
       "title": "Eyes right",
       "year": "1956",
       "image": "./photos/eyes-right.webp",
@@ -176,7 +90,7 @@
       "source": "https://time.com/3503080/the-best-of-life-37-years-in-pictures/"
     },
     {
-      "id": "13",
+      "id": "10",
       "title": "Four lads from Liverpool",
       "year": "1964",
       "image": "./photos/four-lads.webp",
@@ -184,7 +98,7 @@
       "source": "https://time.com/3503080/the-best-of-life-37-years-in-pictures/"
     },
     {
-      "id": "14",
+      "id": "11",
       "title": "Mickey Mantle flings helmet",
       "year": "1965",
       "image": "./photos/mickey-mantle.webp",

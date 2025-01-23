@@ -138,12 +138,14 @@ function revealPhoto() {
 function revealDetails(photo, photoElement) { //photo argument is the photo object, photoElement is the image element that triggered the mouseover event
     //Create a container for the photo details
     const photoDetailsContainer = document.createElement("div")
+    photoDetailsContainer.classList.add("photo-details-container")
 
     //Add photo details
     const titleAndYearReveal = document.createElement("p")
     titleAndYearReveal.textContent = `${photo.title} (${photo.year})`
     const descriptionReveal = document.createElement("p")
     descriptionReveal.textContent = photo.description
+    descriptionReveal.classList.add("photo-descriptions")
 
     //Append details to the container
     photoDetailsContainer.appendChild(titleAndYearReveal)
