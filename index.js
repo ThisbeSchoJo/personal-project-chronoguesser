@@ -1,4 +1,4 @@
-//Initial variables
+//Global scope variables
 let totalScore = 0 
 let currentRound = 0 
 const maxNumOfRounds = 10 //declaring this as variable so the number of rounds is easy to adjust
@@ -12,21 +12,19 @@ document.body.appendChild(startButton)
 startButton.addEventListener('click', () => {
     removeInstructions()
      startGame()
-})//will remove the "BEGIN" button when it is clicked
+})
 
 //Function removes the instructions
 function removeInstructions() {
     const instructions = document.getElementById('instructions')
-    if (instructions) {
         instructions.remove()
-    }
 }
 
 //Function removes "BEGIN" button, reveals the guess input form, and calls fetchRandomPhoto() to begin game
 function startGame() {
     startButton.remove()
     document.getElementById("guess-form").style.display = "block" //reveals the submit form
-    fetchRandomPhoto() //calls function to start generating random photos    
+    fetchRandomPhoto()     
 }
 
 //Function that fetches a random photo from the photos object in db.json
@@ -61,15 +59,14 @@ guessForm.addEventListener('submit', (event) => {
     event.preventDefault() 
     const guessYear = Number(document.querySelector("#guess-year").value) //access input value directly
     calculateScore(guessYear) //pass the value to the function to calculate user's score
-    //Either move onto next round or end the game
-    currentRound ++ //goes to next round
-
-    if (currentRound < maxNumOfRounds) { //if there are rounds left, fetch a new photo
+    currentRound ++ 
+    //if there are rounds left, fetch a new photo, else end game
+    if (currentRound < maxNumOfRounds) { 
         fetchRandomPhoto()
-    } else { //if you've hit the max number of rounds, end the game
+    } else {
         endGame()
     }
-    //clear the input field
+    
     guessForm.reset() 
 })
 
@@ -113,11 +110,11 @@ function acceptPlayerInput() {
     saveScoreButton.textContent = "Save Score"
     document.body.appendChild(saveScoreButton)
     saveScoreButton.style.margin = "5px"
-
+    //save score to db.json
     saveScoreButton.addEventListener("click", () => {
         const playerName = playerNameInput.value
         if (playerName) {
-            saveScore(playerName, totalScore) //save score to db.json
+            saveScore(playerName, totalScore)
             saveScoreButton.remove()
             playerNameInput.remove()
         } else {
@@ -131,7 +128,7 @@ function revealPhoto() {
     randomPhotosArray.forEach((photo) => {
         const usedPhoto = document.createElement('img')
         usedPhoto.src = photo.image
-        usedPhoto.classList.add('used-photo') //this will make all the used photos have the classname "used-photo", so I can style it in CSS
+        usedPhoto.classList.add('used-photo') 
         document.body.appendChild(usedPhoto)
         usedPhoto.addEventListener('mouseover', () => revealDetails(photo, usedPhoto))
     })
@@ -142,7 +139,7 @@ function revealDetails(photo, photoElement) { //photo argument is the photo obje
     //Create a container for the photo details
     const photoDetailsContainer = document.createElement("div")
 
-    //Add details to the container
+    //Add photo details
     const titleAndYearReveal = document.createElement("p")
     titleAndYearReveal.textContent = `${photo.title} (${photo.year})`
     const descriptionReveal = document.createElement("p")
@@ -163,10 +160,9 @@ function revealDetails(photo, photoElement) { //photo argument is the photo obje
 
 //Function saves the player's name and score and calls showLeaderboard()
 function saveScore(playerName, score) {
-    //Create an object to store the player's name and score
+
     const newLeader = { name: playerName, score: score}
 
-    //Send a POST request to update the 'leaders' array in db.json
     fetch('http://localhost:3000/leaders', {
         method: 'POST',
         headers: {
@@ -176,7 +172,7 @@ function saveScore(playerName, score) {
     })
     .then(response => response.json())
     .then(() => {
-        showLeaderboard() //Display the leaderboard after saving the score
+        showLeaderboard()
     })
     .catch(() => {
         alert("Error saving score")
@@ -185,7 +181,7 @@ function saveScore(playerName, score) {
 
 //Function fetches the leaders object from db.json and adds player's name and score to it (in right location)
 function showLeaderboard() {
-    fetch('http://localhost:3000/leaders') //Fetch the leaders data from db.json
+    fetch('http://localhost:3000/leaders') 
         .then(response => response.json())
         .then(data => {
             const leaderboard = data.sort((a,b) => a.score - b.score) //Sorts by score in ascending order
@@ -208,7 +204,7 @@ function showLeaderboard() {
 }
 
 //Testing instructions typing function
-function typeOutText(element, text, speed = 50) {
+function typeOutText(element, text, speed = 150) {
     let index = 0;
 
     function type() {
@@ -225,9 +221,9 @@ function typeOutText(element, text, speed = 50) {
 //Call the typing instructions
 const instructions = document.getElementById('instructions');
 const instructionText = "Welcome to Chronoguesser... Guess the year each photo was taken. The closer you are, the better your score.";
-typeOutText(instructions, instructionText, 150);
+typeOutText(instructions, instructionText);
 
-// Wait for the start music button to be clicked
+// Wait for the start music button to be clicked, then play music on loop
 document.getElementById('start-music').addEventListener('click', function() {
     const audio = document.getElementById('background-music');
     audio.play(); // Start playing the background music

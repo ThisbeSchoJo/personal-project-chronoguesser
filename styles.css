@@ -52,9 +52,9 @@ body {
 
 
 img {
-    max-height: 800px;  /* Set a max height for images */
-    width: auto;  /* Maintain aspect ratio */
-    object-fit: contain;  /* Ensure the entire image fits inside the container */
+    max-height: 800px;  /*Sets a max height for images */
+    width: auto;  /*Maintains aspect ratio */
+    object-fit: contain;  /*Ensures the entire image fits inside the container */
   }
 
 
@@ -71,9 +71,9 @@ img {
 }
 
 
-/* Container for leaderboard */
+/*Container for leaderboard */
 .leaderboard-container {
-    color: #eaeaea; /* Light text color for contrast */
+    color: #eaeaea; /*Light text color for contrast */
     padding: 20px;
     width: 300px;
     margin: 20px auto;
@@ -83,14 +83,14 @@ img {
     text-align: center;
 }
 
-/* Title of the leaderboard */
+/*Title of the leaderboard */
 .leaderboard-container h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Individual leaderboard entries */
+/*Leaderboard entries */
 .leaderboard-entry {
     font-size: 1.2rem;
     padding: 8px 0;
